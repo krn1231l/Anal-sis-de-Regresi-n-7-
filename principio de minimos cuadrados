@@ -1,0 +1,34 @@
+# P R I N C I P I O   D E   M I N I M O S   C U A D R A D O S
+
+x<- c(132,129,120,113.2,105,92,84,83.2,88.4,59,80,81.5,71,69.2)
+y<- c(46,48,51,52.1,54,52,59,58.7,61.6,64,61.4,54.6,58.8,58)
+k<- mean(x)
+j<- mean(y)
+
+principio<- data.frame(x,y)
+
+## Beta gorrito 1
+install.packages("ggplot2")
+library(ggplot2)
+plot(x,y)
+boxplot(x,y)
+p1<- x-k
+p2<- y-j
+p3<- sum(p1*p2)
+p4<- sum(p1^2)
+B1<- p3/p4
+B1
+
+
+## Beta 0
+g1<-sum(y)
+g2<-B1*(sum(x))
+B0<- (g1-g2)/14
+B0
+
+## Grafica
+x11()
+ggplot(principio, aes(x,y)) + 
+  geom_point() +
+  ggtitle("Gráfica de Dispersión") + 
+  geom_smooth(method=lm)
