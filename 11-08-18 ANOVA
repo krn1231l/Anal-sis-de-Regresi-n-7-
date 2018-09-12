@@ -1,0 +1,56 @@
+base1
+x<- c(42.2,42.6,43.3,43.5,43.7,44.1,44.9,45.3,45.7,45.7,45.9,46,46.2,46.2,46.8,46.8,47.1,47.2)
+y<- c(44,44,44,45,45,46,46,46,47,48,48,48,47,48,48,49,49,49)
+mod1<- lm(y~x)
+show(mod1)
+names(mod1)
+summary(mod1)
+anova(mod1)
+#Como se puede observar la sbgorro1=.07806(std.error)
+#p-value es 2.43e-10
+# En este caso el parametro de interes en b1, el cambio esperado en y con un incremento en una
+# unidad en x. la hip nula H0: B1=0, es rechazada y se acepta la alternativa de Ha: B1!=0, 
+# debido a que p-value es un valor menor a .05 y se observa en el summary p-value
+
+x1<- c(50,50,80,80,110,110,140,140,170,170)
+y1<- c(175052,14063,26264,19600,21952,26362,26362,26754,31654,32928)
+mod2<-lm(y1~x1)
+summary(mod2)
+
+#_ - - - - - - - - - -  E J E R C I C I O - - - - - - - - - - _
+A<-c(635,644,711,708,836,820,810,870,856,923,878,937,948)
+B<- c(100,93,88,84,77,75,74,63,57,55,47,43,38)
+mod3<- lm(B~A)
+show(mod3)
+names(mod3)
+summary(mod3)
+anova(mod3)
+#  1.- proporcion de la variacion observada puede ser atribuida al mod3:    
+       ##              88.28 (summary, Adjusted R-squared:.8828)
+#  2.- calcule la desviacion estantar estimada:
+       ##              .01837 (summary, Sbeta1gorrito)
+#  3.- calcule el IC con 95% de la variacion de B con el aumento en una unidad de A
+qt(.025,df=11)   ## qt(alpha/2 , n-2) es similar al valor tablas t-(alpha/2,n-2)
+# intervalos de confianza
+-.175645+(-2.200985*.01837)
+-.175645-(-2.200985*.01837)
+
+#_ - - - - - - - - T A R E A - - - - - - - - - _
+xx<-c(5,12,14,17,23,30,40,47,55,67,72,81,96,112,127) #volumen de precipitacion
+yy<-c(4,10,13,15,15,25,27,46,38,46,53,70,82,99,100) #volumen de escurrimiento
+mod4<-lm(yy~xx)
+summary(mod4)
+mod4$coefficients
+# intervalo de confianza
+z<-qt(.025,13) #valor de la tabla para alfa/2=.025,n-2
+
+# como el valor del estadistico es menor a .05 entonces se rechaza la hipotesis nula
+# y aceptamos la hipotesis altrnativa, es decir tenemos una relacion util y podemos
+# trabajar con este modelo
+
+# intervalos de confianza
+.8269731-(z*.03652)
+.8269731+(z*.03652)
+
+# ante un cambio en una unidad en el volumen de precipitacion
+# el cambio en el volumen de escurrimiento  estara entre .7480764 y .9058698 
